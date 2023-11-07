@@ -24,7 +24,7 @@ resource "aws_internet_gateway" "eks_igw" {
 resource "aws_subnet" "eks_pub_sub_one" {
   vpc_id                  = aws_vpc.eks_vpc.id
   cidr_block              = "10.0.1.0/24"
-  availability_zone       = "eu-west-2a"
+  availability_zone       = "us-east-1a"
   map_public_ip_on_launch = true
 
   tags = {
@@ -37,7 +37,7 @@ resource "aws_subnet" "eks_pub_sub_one" {
 resource "aws_subnet" "eks_pub_sub_two" {
   vpc_id                  = aws_vpc.eks_vpc.id
   cidr_block              = "10.0.2.0/24"
-  availability_zone       = "eu-west-2b"
+  availability_zone       = "us-east-1b"
   map_public_ip_on_launch = true
 
   tags = {
@@ -49,7 +49,7 @@ resource "aws_subnet" "eks_pub_sub_two" {
 resource "aws_subnet" "eks_priv_sub_one" {
   vpc_id            = aws_vpc.eks_vpc.id
   cidr_block        = "10.0.3.0/24"
-  availability_zone = "eu-west-2a"
+  availability_zone = "us-east-1a"
 
   tags = {
     Name = "Private Subnet one"
@@ -60,7 +60,7 @@ resource "aws_subnet" "eks_priv_sub_one" {
 resource "aws_subnet" "eks_priv_sub_two" {
   vpc_id            = aws_vpc.eks_vpc.id
   cidr_block        = "10.0.4.0/24"
-  availability_zone = "eu-west-2b"
+  availability_zone = "us-east-1b"
 
   tags = {
     Name = "Private Subnet two"
@@ -263,7 +263,7 @@ resource "aws_eks_node_group" "eks_node" {
   # release_version = "latest"
 
   # Configure the node group instances
-  instance_types = ["t3.small", "t3.medium", "t3.large"]
+  instance_types = ["t2.micro", "t2.micro", "t2.micro"]
 
 
   # Use the managed node group capacity provider
@@ -288,4 +288,3 @@ resource "aws_eks_node_group" "eks_node" {
 #    Environment = "prod"
 #      }
 # }
-
